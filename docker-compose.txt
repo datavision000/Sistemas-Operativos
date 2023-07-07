@@ -1,0 +1,45 @@
+﻿version: "3"
+services:
+  db-server: // Contenedor con servidor para MYSQL
+    image: mysql:8
+    container_name: db-server
+    restart: always
+    environment:
+      MYSQL_DATABASE: baseDatos
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: dataVision
+      MYSQL_PASSWORD: 69000DV
+    ports:
+      - 3306:3306
+    volumes:
+      - /var/lib/mysql:/var/lib/mysql
+    networks:
+      - apache-mysql-php
+      ipv4_address: 172.128.20.1
+
+
+  web-server: // Contenedor con servidor para apache-php
+    build:
+      context: .
+      dockerfile: Dockerfile-local
+    image: apache-php
+    container_name: web-server
+    restart: always
+    depends_on:
+      - db-server
+    volumes:
+      - ./php/:/var/www/html/
+    ports:
+      - 80:80
+    expose:
+      - 80
+    networks:
+      - apache-mysql-php
+      ipv4_address: 172.128.20.2
+
+
+networks:
+  apache-mysql-php:
+    name: apache-mysql-php
+    driver: bridge
+    - subnet: 172.128.20.0
