@@ -1,0 +1,8 @@
+// imagen a utilizar
+FROM php:8.1.7-apache-buster
+// actualizar repositorios y paquetes instalados
+RUN apt-get update && apt-get upgrade -y
+// extension mysqli para conectar con mysql desde php (conectar docker web y docker bdd)
+RUN docker-php-ext-install mysqli
+// exponer puerto 80
+EXPOSE 80

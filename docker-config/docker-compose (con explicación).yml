@@ -1,0 +1,28 @@
+version: '3.8' //version del archivo docker-compose (ver documentacion de docker)
+
+services:
+  web-server:
+    build:
+      context: /etc/docker-config //ruta del dockerfile
+      dockerfile: DockerfilePHP //nombre del dockerfile a partir del que se crea el servicio
+    container_name: web-server
+    depends_on:
+    - db-server
+    volumes: //sincroniza carpeta del codigo de la app con la del contenedor
+    - /home/admin:/var/www/html
+    ports:
+    - 8000:80
+
+  db-server:
+    container_name: db-server
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    environment: //variables del entorno de MYSQL
+      MYSQL_DATABASE: baseDatosPrueba
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: dataVision
+      MYSQL_PASSWORD: 69000DV
+    ports:
+    - 6033:3306
+
+
