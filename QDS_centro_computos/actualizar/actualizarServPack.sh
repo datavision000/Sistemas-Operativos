@@ -1,7 +1,7 @@
 #!/bin/bash
 
 clear
-tput setaf 5; tput cup 1 0; echo "Actualizar servicios y paquetes"
+tput setaf 5; tput cup 1 0; echo "Actualizar Servicios y Paquetes"
 tput setaf 7; echo ""
 
 sh /home/admin/scripts-backups/update-serv-pack.sh

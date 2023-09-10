@@ -2,7 +2,7 @@
 
 clear
 
-tput cup 1 0; tput setaf 5; echo "Realizar backup de config. del sistema"
+tput cup 1 0; tput setaf 5; echo "Realizar Backup de Config. del Sistema"
 tput cup 3 0; tput setaf 3; echo "Esta seguro que desea realizar un backup de la configuracion del sistema actual?"
 echo "Pulse B para comenzar backup"
 echo "Pulse S para salir"
