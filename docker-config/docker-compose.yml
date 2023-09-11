@@ -1,10 +1,10 @@
-version: '3.8'
+version: '3.0'
 
 services:
   web-server:
     build:
       context: /etc/docker-config
-      dockerfile: DockerfilePHP
+      dockerfile: DockerfilePHP.txt
     container_name: web-server
     depends_on:
     - db-server
@@ -24,5 +24,3 @@ services:
       MYSQL_PASSWORD: 69000DV
     ports:
     - 6033:3306
-
-
