@@ -18,9 +18,11 @@ services:
     image: mysql:latest
     command: --default-authentication-plugin=mysql_native_password
     environment:
-      MYSQL_DATABASE: baseDatosPrueba
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_USER: dataVision
-      MYSQL_PASSWORD: 69000DV
+      MYSQL_DATABASE: QDS
+      MYSQL_ROOT_PASSWORD: qds000L
+      MYSQL_USER: adminQDS
+      MYSQL_PASSWORD: qds000L
     ports:
     - 6033:3306
+
+

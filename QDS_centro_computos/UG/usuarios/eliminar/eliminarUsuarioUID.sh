@@ -13,13 +13,24 @@ do
         tput setaf 1; tput cup 4 0; echo "No existe un usuario con UID '$uid' en el sistema..."
 	tput cup 5 0; echo "Intente nuevamente."
 	tput setaf 7
-        tput cup 1 37; echo "                                                              "
-	tput cup 1 37; read uid
+        tput cup 1 39; echo "                                                              "
+	tput cup 1 39; read uid
 	uid2=$(cut -d: -f3 /etc/passwd | grep -w "$uid")
 done
 
 tput cup 4 0; echo "                                                            "
 tput cup 5 0; echo "                              "
+
+while [[ $uid == 1000 ]]
+do
+	tput cup 4 0; echo "                                                            "
+        tput setaf 1; tput cup 4 0; echo "No es posible eliminar a este usuario..."
+	tput setaf 7
+        tput cup 1 39; echo "                                                              "
+	tput cup 1 39; read uid
+done
+
+tput cup 4 0; echo "                                                      "
 
 nomUsu=$(grep -w "x:$uid" /etc/passwd | cut -d: -f1)
 ingreso=$(grep -w "x:$uid" /etc/passwd | cut -d: -f5)

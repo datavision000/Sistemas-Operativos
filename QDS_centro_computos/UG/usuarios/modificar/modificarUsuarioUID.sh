@@ -32,8 +32,8 @@ tput cup 5 0; tput setaf 6; echo "Grupo:"; tput cup 5 7; tput setaf 7; echo "$gr
 tput cup 6 0; tput setaf 6; echo "Ingreso al sistema: "; tput cup 6 20; tput setaf 7; echo "$ingreso"
 
 tput setaf 3; tput cup 8 0
-echo "Que desea modificar?:"; echo "Nombre de usuario"; tput setaf 4; tput cup 9 18; echo "(ingrese 'nom')"
-tput setaf 3; tput cup 9 34; echo "/ grupo actual"; tput setaf 4; tput cup 9 49; echo "(ingrese 'gr')" 
+echo "Que desea modificar?:"; echo "Nombre de usuario"; tput setaf 6; tput cup 9 18; echo "(ingrese 'nom')"
+tput setaf 3; tput cup 9 34; echo "/ grupo actual"; tput setaf 6; tput cup 9 49; echo "(ingrese 'gr')" 
 
 tput setaf 7; tput cup 11 0; read dato
 

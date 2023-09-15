@@ -18,8 +18,22 @@ do
 	nomUsu2=$(cut -d: -f1 /etc/passwd | grep -w "$nomUsu")
 done
 
-tput cup 4 0; echo "                                              "
+tput cup 4 0; echo "                                                   "
 tput cup 5 0; echo "                              "
+
+uid=$(grep -w "$nomUsu:x" /etc/passwd | cut -d: -f3)
+
+while [[ $uid == 1000 ]]
+do
+	tput cup 4 0; echo "                                                            "
+        tput setaf 1; tput cup 4 0; echo "No es posible eliminar a este usuario..."
+	tput setaf 7
+        tput cup 1 42; echo "                                                              "
+	tput cup 1 42; read nomUsu
+	uid=$(grep -w "$nomUsu:x" /etc/passwd | cut -d: -f3)
+done
+
+tput cup 4 0; echo "                                                      "
 
 uid=$(grep -w "$nomUsu:x" /etc/passwd | cut -d: -f3)
 fechaIngreso=$(grep -w "$nomUsu:x" /etc/passwd | cut -d: -f5)

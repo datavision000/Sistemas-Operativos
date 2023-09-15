@@ -8,7 +8,7 @@ do
 	echo ""
 	echo "1. Realizar backup"
 	echo "2. Listar backups"
-	echo "3. Reestabelecer a partir de backup"
+	echo "3. Reestablecer a partir de backup"
 	tput setaf 3; echo "0. Volver"
 	tput setaf 7; echo " "
 	read opcion

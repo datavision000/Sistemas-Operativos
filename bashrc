@@ -102,3 +102,4 @@ fi
 alias QDS="cd /home/admin/QDS_centro_computos; sh principal.sh"
 alias qds="cd /home/admin/QDS_centro_computos; sh principal.sh"
 
+qds
