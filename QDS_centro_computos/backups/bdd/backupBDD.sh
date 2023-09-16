@@ -2,7 +2,7 @@
 
 clear
 
-tput cup 1 0; tput setaf 5; echo "Realizar backup de la base de datos"
+tput cup 1 0; tput setaf 5; echo "Realizar Backup de la Base de Datos"
 tput cup 3 0; tput setaf 3; echo "Esta seguro que desea realizar un backup de la base de datos actual?"
 echo "Pulse B para comenzar backup"
 echo "Pulse S para salir"

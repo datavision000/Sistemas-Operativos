@@ -5,7 +5,7 @@ do
 	tput setaf 5; echo "Listar Usuarios de un Grupo"
 	tput setaf 7
 	echo ""
-	echo "1. Buscar grupo por nombre"
+	echo "1. Buscar grupo por Nombre"
 	echo "2. Buscar grupo por GID"
 	tput setaf 3; echo "0. Volver"
 	tput setaf 7; echo " "

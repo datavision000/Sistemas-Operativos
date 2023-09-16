@@ -6,7 +6,7 @@ do
 	tput setaf 3
 	tput cup 1 0; echo "************************************************"
 	tput cup 2 0; echo "*                                              *"
-	tput cup 3 0; echo "*           QDS - Centro de computos           *"
+	tput cup 3 0; echo "*           QDS - Centro de Computos           *"
 	tput cup 4 0; echo "*                                              *"
 	tput cup 5 0; echo "************************************************"
 	tput setaf 7
@@ -26,5 +26,5 @@ do
 		4) sh backups/sistema/menuBackupSys.sh ;;
 		5) sh logins/menuLogins.sh ;;
 		0) exit ;;
-		esac
+	esac
 done

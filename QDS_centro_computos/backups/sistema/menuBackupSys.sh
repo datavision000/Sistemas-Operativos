@@ -6,9 +6,9 @@ do
 	tput setaf 5; tput cup 1 0; echo "Backup de Config. del Sistema"
 	tput setaf 7
 	echo ""
-	echo "1. Realizar backup"
-	echo "2. Listar backups"
-	echo "3. Reestablecer a partir de backup"
+	echo "1. Realizar Backup"
+	echo "2. Listar Backups"
+	echo "3. Reestablecer a Partir de Backup"
 	tput setaf 3; echo "0. Volver"
 	tput setaf 7; echo " "
 	read opcion

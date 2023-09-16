@@ -3,7 +3,7 @@
 while [[ $opcion != 0 ]]
 do
 	clear
-	tput setaf 5; tput cup 1 0; echo "Gestion de usuarios y grupos"
+	tput setaf 5; tput cup 1 0; echo "Gestion de Usuarios y Grupos"
 	tput setaf 7
 	echo ""
 	echo "1. Gestionar Usuarios"

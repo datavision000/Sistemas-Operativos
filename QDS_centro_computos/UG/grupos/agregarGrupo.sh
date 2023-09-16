@@ -3,7 +3,7 @@
 clear
 
 echo ""
-tput setaf 5; echo "Ingresar Grupo"
+tput setaf 5; echo "Ingresar un Grupo"
 
 tput setaf 3
 tput cup 3 0; echo "Nombre de grupo: "

@@ -4,10 +4,10 @@ while [[ $opc != 0 ]]
 do
 	clear
 	echo ""
-	tput setaf 5; echo "Buscar un usuario"
+	tput setaf 5; echo "Buscar un Usuario"
 	tput setaf 7
 	echo ""
-	echo "1. Buscar por nombre"
+	echo "1. Buscar por Nombre"
 	echo "2. Buscar por UID"
 	tput setaf 3; echo "0. Volver"
 	tput setaf 7; echo " "
