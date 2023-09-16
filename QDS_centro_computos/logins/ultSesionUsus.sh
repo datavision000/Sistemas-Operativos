@@ -4,7 +4,7 @@ clear
 
 tput cup 1 0; tput setaf 5; echo "Ultima Sesion de los Usuarios del Sistema"
 
-tput setaf 5; tput cup 3 0
+tput setaf 6; tput cup 3 0
 echo "Usuario"
 tput cup 3 23; echo "Terminal"
 tput cup 3 39; echo "Fecha"

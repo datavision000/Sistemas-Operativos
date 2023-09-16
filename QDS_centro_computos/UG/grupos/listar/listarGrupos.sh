@@ -2,9 +2,11 @@
 
 clear
 tput setaf 5
-tput cup 1 0; echo "GID"
-tput cup 1 15; echo "Grupo"
-w=3
+tput cup 1 0; echo "Grupos en el Sistema"
+tput setaf 6
+tput cup 3 0; echo "GID"
+tput cup 3 15; echo "Grupo"
+w=5
 
 tput setaf 7
 
@@ -20,4 +22,4 @@ do
 	fi 
 done
 
-read volver
+read espera

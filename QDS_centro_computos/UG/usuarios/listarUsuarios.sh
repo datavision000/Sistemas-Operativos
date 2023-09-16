@@ -1,13 +1,15 @@
 #!/bin/bash
-
 clear
-tput setaf 5
-tput cup 1 0; echo "UID"
-tput cup 1 15; echo "Usuario"
-tput cup 1 34; echo "Grupo"
-tput cup 1 51; echo "GID"
 
-w=3
+tput cup 1 0; tput setaf 5; echo "Usuarios en el Sistema"
+
+tput setaf 6
+tput cup 3 0; echo "UID"
+tput cup 3 15; echo "Usuario"
+tput cup 3 34; echo "Grupo"
+tput cup 3 51; echo "GID"
+
+w=5
 
 tput setaf 7
 
@@ -27,4 +29,4 @@ do
 	fi 
 done
 
-read volver
+read espera

@@ -1,35 +1,37 @@
 #!/bin/bash
 clear
 
-tput setaf 3; tput cup 1 0; echo "Ingrese el nombre del grupo a buscar: "
-tput setaf 7; tput cup 1 38; read nomGr
+tput cup 1 0; tput setaf 5; echo "Listar Usuarios de un Grupo (por nombre)"
+
+tput setaf 3; tput cup 3 0; echo "Ingrese el nombre del grupo a buscar: "
+tput setaf 7; tput cup 3 38; read nomGr
 
 nomGr2=$(cut -d: -f1 /etc/group | grep -w "$nomGr")
 
 while [ -z $nomGr2 ]
 do
-	tput cup 4 0; echo "                                                            "
-        tput setaf 1; tput cup 4 0; echo "No existe un grupo llamado '$nomGr' en el sistema..."
-	tput cup 5 0; echo "Intente nuevamente."
+	tput cup 6 0; echo "                                                            "
+        tput setaf 1; tput cup 6 0; echo "No existe un grupo llamado '$nomGr' en el sistema..."
+	tput cup 7 0; echo "Intente nuevamente."
 	tput setaf 7
-        tput cup 1 38; echo "                                                              "
-	tput cup 1 38; read nomGr
+        tput cup 3 38; echo "                                                              "
+	tput cup 3 38; read nomGr
 	nomGr2=$(cut -d: -f1 /etc/group | grep -w "$nomGr")
 done
 
-tput cup 4 0; echo "                                              "
-tput cup 5 0; echo "                              "
+tput cup 6 0; echo "                                              "
+tput cup 7 0; echo "                              "
 
 gid=$(grep -w "$nomGr:x" /etc/group | cut -d: -f3)
 
-tput cup 3 0; tput setaf 5; echo "Usuarios del grupo '$nomGr' (GID: $gid)"
+tput cup 5 0; tput setaf 5; echo "Usuarios del grupo '$nomGr' (GID: $gid)"
 
-tput setaf 5
-tput cup 5 0; echo "UID"
-tput cup 5 15; echo "Usuario"
-tput cup 5 34; echo "Ingreso al sistema"
+tput setaf 6
+tput cup 7 0; echo "UID"
+tput cup 7 15; echo "Usuario"
+tput cup 7 34; echo "Ingreso al sistema"
 
-w=7
+w=9
 
 tput setaf 7
 
@@ -48,4 +50,4 @@ do
 	fi
 done
 
-read volver
+read espera

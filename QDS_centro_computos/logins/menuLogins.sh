@@ -3,7 +3,7 @@
 while [[ $opcion != 0 ]]
 do
 	clear
-	tput setaf 5; tput cup 1 0; echo "Gestion de logins"
+	tput setaf 5; tput cup 1 0; echo "Gestion de Logins"
 	tput setaf 7
 	echo ""
 	echo "1. Usuarios Conectados en Este Momento"
@@ -17,7 +17,7 @@ do
 	case $opcion in
 		1) sh logins/ususConectados.sh ;;
 		2) sh logins/ultSesionUsus.sh ;;
-		3) sh logins/ultSesionUsu.sh ;;
+		3) sh logins/ultSesionUsu/ultSesionUsu.sh ;;
 		4) sh logins/loginsExitosos.sh ;;
 		5) sh logins/loginsFallidos.sh ;;
 		0) exit ;;

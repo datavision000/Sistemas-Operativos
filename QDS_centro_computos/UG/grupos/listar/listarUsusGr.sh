@@ -2,7 +2,7 @@ while [[ $opc != 0 ]]
 do
 	clear
 	echo ""
-	tput setaf 5; echo "Listar usuarios de un grupo"
+	tput setaf 5; echo "Listar Usuarios de un Grupo"
 	tput setaf 7
 	echo ""
 	echo "1. Buscar grupo por nombre"
