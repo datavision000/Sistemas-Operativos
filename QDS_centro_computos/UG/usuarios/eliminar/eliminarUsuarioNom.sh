@@ -103,6 +103,11 @@ case $opcion in
 			grep -v "$nomUsu ALL" /etc/sudoers2 > /etc/sudoers
 			rm /etc/sudoers2
 		fi
+
+		mv /etc/mails /etc/mails2
+		grep -v "$nomUsu" /etc/mails2 > /etc/mails
+		rm /etc/mails2
+
 		tput cup 22 0; tput setaf 2
 		echo "El usuario llamado '$nomUsu' fue eliminado del sistema correctamente!"
 		echo "Toque cualquier tecla para volver..."; tput setaf 7; read espera ;;

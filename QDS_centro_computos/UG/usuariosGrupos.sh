@@ -1,5 +1,4 @@
 #!/bin/bash
-
 while [[ $opcion != 0 ]]
 do
 	clear
