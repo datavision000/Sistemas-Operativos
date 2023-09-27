@@ -9,7 +9,7 @@ echo ""
 tput setaf 5; echo "Ingresar un Usuario"
 
 tput setaf 3
-tput cup 3 0; echo "Nombre de Usuario: "
+tput cup 3 0; echo "Nombre de usuario: "
 tput cup 4 0; echo "Nombre del grupo: "
 tput cup 5 0; echo "Mail: "
 tput setaf 7
