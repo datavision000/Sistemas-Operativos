@@ -1,5 +1,4 @@
 #!/bin/bash
-
 while [[ $op != 0 ]]
 do
 	clear

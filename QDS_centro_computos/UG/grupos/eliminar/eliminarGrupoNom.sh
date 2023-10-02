@@ -4,73 +4,81 @@ clear
 tput setaf 5; tput cup 1 0; echo "Eliminar un Grupo (por GID)"
 
 tput setaf 3; tput cup 3 0; echo "Ingrese el nombre del grupo a eliminar: "
+tput cup 5 0; tput setaf 2; echo "(Ingrese 0 para regresar...)"
 tput setaf 7; tput cup 3 40; read nomGr
 
-gid=$(grep -w "$nomGr:x" /etc/group | cut -d: -f3)
-verificacionGr=$(cut -d: -f4 /etc/passwd | grep -w "$gid")
+if [[ $nomGr != 0 ]]
+then
 
-while [[ ! -z $verificacionGr ]]
-do
-	tput cup 6 0; tput setaf 1; echo "                                                                        "
-	tput cup 6 0; echo "El grupo llamado '$nomGr' no puede ser eliminado del sistema!"
-	echo "Contiene usuarios dentro..."
-	echo "Ingrese un grupo vacio."
-	tput cup 3 40; echo "                                                       "
-	tput cup 3 40; tput setaf 7; read nomGr
 	gid=$(grep -w "$nomGr:x" /etc/group | cut -d: -f3)
 	verificacionGr=$(cut -d: -f4 /etc/passwd | grep -w "$gid")
-done
 
-tput cup 6 0; echo "                                                              "
-tput cup 7 0; echo "                                  "
-tput cup 8 0; echo "                                 "
+	while [[ ! -z $verificacionGr ]]
+	do
+		tput cup 6 0; tput setaf 1; echo "                                                                        "
+		tput cup 6 0; echo "El grupo llamado '$nomGr' no puede ser eliminado del sistema!"
+		echo "Contiene usuarios dentro..."
+		echo "Ingrese un grupo vacio."
+		tput cup 3 40; echo "                                                       "
+		tput cup 3 40; tput setaf 7; read nomGr
+		gid=$(grep -w "$nomGr:x" /etc/group | cut -d: -f3)
+		verificacionGr=$(cut -d: -f4 /etc/passwd | grep -w "$gid")
+	done
 
-nomGr2=$(cut -d: -f1 /etc/group | grep -w "$nomGr")
+	tput cup 6 0; echo "                                                              "
+	tput cup 7 0; echo "                                  "
+	tput cup 8 0; echo "                                 "
 
-while [[ -z $nomGr2 ]]
-do
-	tput cup 6 0; echo "                                                            "
-        tput setaf 1; tput cup 6 0; echo "No existe un grupo llamado '$nomGr' en el sistema..."
-	tput cup 7 0; echo "Intente nuevamente."
-	tput setaf 7
-        tput cup 3 40; echo "                                                              "
-	tput cup 3 40; read nomGr
 	nomGr2=$(cut -d: -f1 /etc/group | grep -w "$nomGr")
-done
 
-tput cup 6 0; echo "                                                          "
-tput cup 7 0; echo "                              "
+	while [[ -z $nomGr2 ]]
+	do
+		tput cup 6 0; echo "                                                            "
+		tput setaf 1; tput cup 6 0; echo "No existe un grupo llamado '$nomGr' en el sistema..."
+		tput cup 7 0; echo "Intente nuevamente."
+		tput setaf 7
+		tput cup 3 40; echo "                                                              "
+		tput cup 3 40; read nomGr
+		nomGr2=$(cut -d: -f1 /etc/group | grep -w "$nomGr")
+	done
 
-gid=$(grep -w "$nomGr:x" /etc/group | cut -d: -f3)
+	tput cup 6 0; echo "                                                          "
+	tput cup 7 0; echo "                              "
 
-tput cup 5 0; tput setaf 6; echo "Nombre de Grupo:"; tput cup 5 17; tput setaf 7; echo "$nomGr"
-tput cup 6 0; tput setaf 6; echo "GID:"; tput cup 6 5; tput setaf 7; echo "$gid"
+	gid=$(grep -w "$nomGr:x" /etc/group | cut -d: -f3)
 
-tput setaf 3; tput cup 8 0
-echo "Esta seguro que desea eliminar este grupo?"
-echo "Pulse E para eliminar"
-echo "Pulse S para salir sin eliminar"
-tput setaf 7; tput cup 12 0; read opcion
+	tput cup 5 0; echo "                                                        "
 
-if [[ $opcion == "e" ]]
-then
-	opcion="E"
+	tput cup 5 0; tput setaf 6; echo "Nombre de Grupo:"; tput cup 5 17; tput setaf 7; echo "$nomGr"
+	tput cup 6 0; tput setaf 6; echo "GID:"; tput cup 6 5; tput setaf 7; echo "$gid"
+
+	tput setaf 3; tput cup 8 0
+	echo "Esta seguro que desea eliminar este grupo?"
+	echo "Pulse E para eliminar"
+	echo "Pulse S para salir sin eliminar"
+	tput setaf 7; tput cup 12 0; read opcion
+
+	if [[ $opcion == "e" ]]
+	then
+		opcion="E"
+	fi
+
+	if [[ $opcion == "s" ]]
+	then
+		opcion="S"
+	fi
+
+	case $opcion in
+
+		"E") 
+			sudo groupdel $nomGr
+			tput cup 14 0; tput setaf 2
+			echo "El grupo llamado '$nomGr' fue eliminado del sistema correctamente!"
+			echo "Toque cualquier tecla para volver..."; tput setaf 7; read espera ;;
+			
+		"S")
+
+			;;
+	esac
+
 fi
-
-if [[ $opcion == "s" ]]
-then
-	opcion="S"
-fi
-
-case $opcion in
-
-	"E") 
-		sudo groupdel $nomGr
-		tput cup 14 0; tput setaf 2
-		echo "El grupo llamado '$nomGr' fue eliminado del sistema correctamente!"
-		echo "Toque cualquier tecla para volver..."; tput setaf 7; read espera ;;
-		
-	"S")
-
-		;;
-esac

@@ -22,4 +22,4 @@ do
 	fi 
 done
 
-read espera
+echo " "; echo " "; tput setaf 2; echo "Presione cualquier tecla para volver..."; tput setaf 7; read espera

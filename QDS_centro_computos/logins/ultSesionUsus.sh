@@ -18,4 +18,4 @@ tput cup 5 0; tput setaf 7
 
 lastlog | tail -$w | grep -v "**Nunca ha accedido**" | awk '{printf "%-22s %-15s %-1s %-1s %-10s %-12s\n", $1, $2, $5, $4, $8, $6}'
 
-echo ""; read espera
+echo " "; echo " "; tput setaf 2; echo "Presione cualquier tecla para volver..."; tput setaf 7; read espera

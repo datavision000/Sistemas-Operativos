@@ -14,4 +14,4 @@ tput cup 5 0; tput setaf 7
 w | grep -v "LOGIN@" | grep -v "load average" | awk '{printf "%-22s %-13s %-12s %-1s %-1s %-12s\n", $1, $2, $3, $7, $8, $9}'
 
 
-echo ""; tput setaf 7; read espera
+echo " "; echo " "; tput setaf 2; echo "Presione cualquier tecla para volver..."; tput setaf 7; read espera

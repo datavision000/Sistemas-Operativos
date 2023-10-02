@@ -15,4 +15,4 @@ else
 	echo "No hay copias de seguridad guardadas actualmente..."
 fi
 
-echo ""; tput setaf 7; read espera
+echo " "; tput setaf 2; echo "Presione cualquier tecla para volver..."; tput setaf 7; read espera

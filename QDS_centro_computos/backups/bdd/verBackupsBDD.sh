@@ -17,4 +17,4 @@ else
 fi
 
 
-echo ""; tput setaf 7; read espera
+echo " "; tput setaf 2; echo "Presione cualquier tecla para volver..."; tput setaf 7; read espera
