@@ -8,10 +8,9 @@ tput cup 3 0
 if [ "$(ls -A /home/admin/backups/copias-bdd)" ]
 then
 	tput cup 3 0; tput setaf 7
-	cd /home/admin/backups/copias-bdd; ls -d cop* -1
+	cd /home/admin/backups/copias-bdd; ls -f qds* -1
 
-	cantArch=$(ls /home/admin/backups/copias-bdd | wc -l)
-	cantBackups=$(($cantArch / 2))
+	cantBackups=$(ls /home/admin/backups/copias-bdd | wc -l)
 	x=$(($cantBackups + 4))
 	z=$(($x + 2))
 
@@ -55,7 +54,8 @@ then
 		case $opcion in
 
 			"R")
-			
+				mysql -u root -p'DVeul000' -e "DROP DATABASE QDS; CREATE DATABASE QDS;"
+				mysql -u root -p'DVeul000' QDS < $copiaElegida
 				tput cup $(($y + 12)) 0; tput setaf 2; echo "Base de datos reestablecida correctamente!"
 				echo "Toque cualquier tecla para volver..."; tput setaf 7; read espera ;;
 			

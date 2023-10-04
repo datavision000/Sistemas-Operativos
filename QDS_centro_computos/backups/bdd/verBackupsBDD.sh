@@ -9,7 +9,7 @@ tput cup 3 0
 if [ "$(ls -A /home/admin/backups/copias-bdd)" ]
 then
 	tput cup 3 0; tput setaf 3
-	cd /home/admin/backups/copias-bdd; ls -d cop* -1
+	cd /home/admin/backups/copias-bdd; ls -f qds* -1
 	cd /home/admin/QDS_centro_computos
 else
 	tput cup 4 0; tput setaf 1

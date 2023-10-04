@@ -102,5 +102,10 @@ fi
 alias QDS="cd /home/admin/QDS_centro_computos; sh principal.sh"
 alias qds="cd /home/admin/QDS_centro_computos; sh principal.sh"
 
+if [ ! -f /etc/mails ]
+then
+    touch /etc/mails
+fi
+
 sh /home/admin/solucionScripts.sh
 qds
