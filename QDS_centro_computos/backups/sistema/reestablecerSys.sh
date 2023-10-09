@@ -55,9 +55,21 @@ then
 		case $opcion in
 
 			"R")
-			
+				# hacer reestablecimiento
 				tput cup $(($y + 12)) 0; tput setaf 2; echo "Configuraciones, usuarios y grupos reestablecidos correctamente!"
-				echo "Toque cualquier tecla para volver..."; tput setaf 7; read espera ;;
+				tput cup $(($y + 13)) 0; tput setaf 2; echo "Para guardar los cambios, el sistema debera reiniciarse."
+				tiempo_restante=5
+
+				while [ $tiempo_restante -ge 0 ]
+				do
+					tput cup $(($y + 14)) 0; tput setaf 1; echo "Reinicio en $tiempo_restante segundos..."
+					sleep 1
+					tiempo_restante=$(($tiempo_restante - 1))
+				done
+
+				reboot				
+
+				;;
 			
 			"S")
 
@@ -71,7 +83,3 @@ else
 	echo "No hay copias de seguridad guardadas actualmente..."
 	echo ""; tput setaf 7; read espera
 fi
-
-
-
-
