@@ -108,5 +108,5 @@ then
     touch /etc/mails
 fi
 
-sh /home/admin/solucionScripts.sh
+scripts
 qds
