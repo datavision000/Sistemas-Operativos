@@ -1,5 +1,4 @@
 #!/bin/bash
-
 fechaHora=$(date +%d-%m-%Y,%H:%M)
 
 if [ "$(ls -A /home/admin/backups/copias-bdd)" ]
@@ -19,6 +18,5 @@ then
 	fi
 
 fi
-
 
 mysqldump -u root -p'DVeul000' QDS > /home/admin/backups/copias-bdd/qds$fechaHora.sql

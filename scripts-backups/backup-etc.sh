@@ -19,5 +19,4 @@ then
 
 fi
 
-
-rsync -zaq --log-file=/home/admin/backups/copias-etc/informe-copia-etc$fechaHora /etc/ /home/admin/backups/copias-etc/copia-etc$fechaHora
+rsync -zaq /etc/ /home/admin/backups/copias-etc/copia-etc$fechaHora
