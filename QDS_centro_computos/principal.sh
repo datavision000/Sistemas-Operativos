@@ -24,6 +24,6 @@ do
 		3) sh backups/bdd/menuBackupBDD.sh ;;
 		4) sh backups/sistema/menuBackupSys.sh ;;
 		5) sh logins/menuLogins.sh ;;
-		0) exit ;;
+		0) sh exitQDS.sh ;; 
 	esac
 done

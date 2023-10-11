@@ -53,7 +53,7 @@ do
 
 			if [[ $grupo == 0 ]]
 			then
-				break
+				break 2
 			elif [ -z $grupo2 ]
 			then
 				tput cup 8 0; echo "                                                             "
@@ -67,12 +67,12 @@ do
 				while [ true ]
 				do
 					tput cup 5 6; echo "                                       "
-					tput cup 5 6; read mail
-					mail2=$(grep -w ":$mail" /etc/mails)
+					tput cup 5 6; tput setaf 7; read mail
+					mail2=$(grep -w "$mail" /etc/mails | cut -d: -f2)
 
 					if [[ $mail == 0 ]]
 					then
-						break
+						break 3
 					elif [ $mail2 ]
 					then
 						tput setaf 1; tput cup 8 0; echo "Ese correo ya esta registrado en el sistema..."

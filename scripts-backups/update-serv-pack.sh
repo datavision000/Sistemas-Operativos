@@ -1,4 +1,4 @@
 #!/bin/bash
 
-yum update
-yum upgrade
+yum -y update
+yum -y upgrade

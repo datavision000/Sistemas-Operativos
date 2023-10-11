@@ -62,9 +62,17 @@ then
 
 				while [ $tiempo_restante -ge 0 ]
 				do
-					tput cup $(($y + 14)) 0; tput setaf 1; echo "Reinicio en $tiempo_restante segundos..."
+					if [ $tiempo_restante -gt 1 ] || [ $tiempo_restante -eq 0 ]
+					then
+						tput cup $(($y + 14)) 0; tput setaf 1; echo "Reinicio en $tiempo_restante segundos..."
+					elif [ $tiempo_restante -eq 1 ]
+					then	
+						tput cup $(($y + 14)) 0; echo "                                                      "
+						tput cup $(($y + 14)) 0; tput setaf 1; echo "Reinicio en $tiempo_restante segundo..."
+					fi
 					sleep 1
 					tiempo_restante=$(($tiempo_restante - 1))
+
 				done
 
 				reboot				
