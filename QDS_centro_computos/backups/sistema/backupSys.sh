@@ -9,6 +9,17 @@ echo "Pulse S para salir"
 
 tput cup 7 0; tput setaf 7; read op
 
+while [[ $op != "B" ]] && [[ $op != "b" ]] && [[ $op != "S" ]] && [[ $op != "s" ]]
+do
+	tput cup 7 0; echo "                                     "
+	tput setaf 1; tput cup 10 0; echo "Opcion incorrecta!"
+	echo "Debe ingresar <B> o <S>."
+	tput cup 7 0; tput setaf 7; read op
+done
+
+tput cup 10 0; echo "                                 "
+tput cup 11 0; echo "                               "
+
 if [[ $op == "b" ]]
 then
 	op="B"
