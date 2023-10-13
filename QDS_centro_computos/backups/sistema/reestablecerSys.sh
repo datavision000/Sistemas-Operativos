@@ -21,10 +21,10 @@ then
 		tput cup $x 49; echo "                                                                "
 		tput setaf 7; tput cup $x 49; read copiaElegida
 
-		if [ $copiaElegida == 0 ]
+		if [ $copiaElegida == 0 &> /dev/null ] 
 		then
 			break
-		elif [ ! -e "$(pwd)/$copiaElegida" ]
+		elif [ ! -e "$(pwd)/$copiaElegida" ] || [ -z $copiaElegida ]
 		then
 			tput cup $(($x + 3)) 0; tput setaf 1; echo "                               "
 			tput cup $(($x + 3)) 0; tput setaf 1; echo "Ingrese una copia valida..." 
