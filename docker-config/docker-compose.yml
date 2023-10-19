@@ -9,7 +9,7 @@ services:
     depends_on:
     - db-server
     volumes:
-    - /home/admin:/var/www/html
+    - /home/admin/QDS:/var/www/html/QDS
     ports:
     - 8000:80
 
