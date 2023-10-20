@@ -17,6 +17,10 @@ do
 	if [[ $gid == 0 ]]
 	then
 		break
+	elif [ -z $gid ]
+	then
+		tput cup 6 0; echo "                                                                      "
+		tput setaf 1; tput cup 6 0; echo "Ingrese un dato valido."
 	elif [[ $gid == 1001 ]]
 	then
 		tput setaf 1; tput cup 6 0; echo "                                                                       "

@@ -17,6 +17,10 @@ do
 	if [ $gid == 0 ]
 	then
 		break
+	elif [ -z $nomGr ]
+	then
+		tput cup 6 0; echo "                                                                      "
+		tput setaf 1; tput cup 6 0; echo "Ingrese un dato valido."
 	elif [ -z $nomGr2 ]
 	then
 		tput cup 6 0; echo "                                                            "

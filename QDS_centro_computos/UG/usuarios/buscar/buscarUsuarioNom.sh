@@ -16,6 +16,10 @@ do
 	if [[ $nomUsu == 0 ]]
 	then
 		break
+	elif [ -z $nomUsu ]
+	then
+		tput cup 6 0; echo "                                                                      "
+		tput setaf 1; tput cup 6 0; echo "Ingrese un dato valido."
 	elif [ -z $nomUsu2 ]
 	then
 		tput cup 6 0; echo "                                                            "

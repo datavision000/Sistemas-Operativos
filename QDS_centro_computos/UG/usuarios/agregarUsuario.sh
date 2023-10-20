@@ -26,6 +26,10 @@ do
 	if [[ $usu == 0 ]]
 	then
 		break
+	elif [ -z $usu ]
+	then
+		tput cup 8 0; echo "                                                                      "
+		tput setaf 1; tput cup 8 0; echo "Ingrese un dato valido."
 	elif [ $usuLetras -lt 3 ]
 	then
 		tput cup 8 0; echo "                                                                  "

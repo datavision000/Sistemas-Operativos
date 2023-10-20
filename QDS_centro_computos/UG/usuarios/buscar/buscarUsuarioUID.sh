@@ -16,6 +16,10 @@ do
 	if [[ $uid == 0 ]]
 	then
 		break
+	elif [ -z $uid ]
+	then
+		tput cup 6 0; echo "                                                                      "
+		tput setaf 1; tput cup 6 0; echo "Ingrese un dato valido."
 	elif [ -z $uid2 ]
 	then
 		tput cup 6 0; echo "                                                            "
