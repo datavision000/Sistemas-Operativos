@@ -101,7 +101,7 @@ fi
 
 alias QDS="cd /home/admin/QDS_centro_computos; sh principal.sh"
 alias qds="cd /home/admin/QDS_centro_computos; sh principal.sh"
-alias scripts="find /home/admin -type f -exec dos2unix {} \; > /dev/null 2>&1"
+alias scripts="clear; tput setaf 1; echo 'Aguarde unos segundos...'; find /home/admin -type f -exec dos2unix {} \; > /dev/null 2>&1; clear; tput setaf 7"
 
 if [ ! -f /etc/mails ]
 then

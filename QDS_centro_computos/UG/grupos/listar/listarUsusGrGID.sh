@@ -14,7 +14,7 @@ do
 
 	gid2=$(cut -d: -f3 /etc/group | grep -w "$gid")
 
-	if [ $gid == 0 ]
+	if [[ $gid == 0 ]]
 	then
 		break
 	elif [ -z $gid ]

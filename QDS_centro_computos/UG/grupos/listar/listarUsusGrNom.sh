@@ -14,7 +14,7 @@ do
 
 	nomGr2=$(cut -d: -f1 /etc/group | grep -w "$nomGr")
 
-	if [ $gid == 0 ]
+	if [[ $nomGr == 0 ]]
 	then
 		break
 	elif [ -z $nomGr ]
