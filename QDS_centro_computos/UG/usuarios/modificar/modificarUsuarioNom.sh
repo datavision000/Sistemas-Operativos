@@ -109,7 +109,7 @@ do
 							tput setaf 1; tput cup 19 0; echo "El usuario '$nom2' ya existe en el sistema..."
 						else
 							tput cup 19 0; echo "                                                "
-		
+							
 							nomUsuLetras=$(echo "${#nomUsu}")
 							x=$((50 + $nomUsuLetras))
 							y=$(($x + 3))
@@ -146,7 +146,7 @@ do
 
 								"M") 
 									sudo usermod -l $nom2 $nomUsu
-							
+												
 									mv /etc/mails /etc/mails2
 									grep -v "$nomUsu" /etc/mails2 > /etc/mails
 									rm /etc/mails2
@@ -154,19 +154,17 @@ do
 									echo "$nom2:$mail" >> /etc/mails
 
 									tput cup 24 0; tput setaf 2; echo "Nombre de usuario modificado correctamente!"
-									echo "Presione cualquier tecla para volver..."; tput setaf 7; read espera; break 2
+									echo "Presione cualquier tecla para volver..."; tput setaf 7; read espera; break 3
 									;;
-								
+													
 								"S")
-									break 2
+									break 3
 									;;
 							esac
-
 
 						fi
 
 					done
-
 				fi
 
 				if [ $dato == "GR" ]
@@ -178,11 +176,203 @@ do
 				then
 					tput setaf 3; tput cup 16 0; echo "Nombre del grupo al que lo desea mover: "
 					
-					# comenzar while [ true ]
+					while [ true ]
+					do
+						tput cup 16 40; echo "                                                                         " 
+						tput setaf 7; tput cup 16 40; read gr2
+						gr3=$(cut -d: -f1 /etc/group | grep -w "$gr2")
+						gr2Letras=$(echo "${#gr2}")
 
-					tput setaf 7; tput cup 16 40; read gr2
+						if [ -z $gr2 ]
+						then
+							tput cup 19 0; echo "                                                                     "
+							tput cup 20 0; echo "                                                                      "
+							tput setaf 1; tput cup 19 0; echo "Ingrese un dato valido."
+						elif [[ $gr2 == $grupo ]]
+						then
+							tput cup 19 0; echo "                                                                     "
+							tput cup 20 0; echo "                                                                      "
+							tput setaf 1; tput cup 19 0; echo "El usuario '$nomUsu' ya esta ingresado en ese grupo!"
+							tput cup 20 0; echo "Intente ingresando uno diferente."
+						elif [ -z $gr3 ]
+						then
+							tput cup 19 0; echo "                                                                     "
+							tput cup 20 0; echo "                                                                      "
+							tput setaf 1; tput cup 19 0; echo "No existe un grupo llamado '$gr2' en el sistema..."
+							tput cup 20 0; echo "Intente ingresando uno existente o regrese luego de crearlo."
+						elif [ $gr2Letras -lt 3 ]
+						then
+							tput cup 19 0; echo "                                                                            "
+							tput cup 20 0; echo "                                                                      "
+							tput setaf 1; tput cup 19 0; echo "El nombre del grupo debe contener al menos 3 caracteres..."
+						elif [[ $gr2 =~ [0-9] ]] || [[ $gr2 =~ : ]]
+						then
+							tput cup 19 0; echo "                                                                            "
+							tput cup 20 0; echo "                                                                      "
+							tput setaf 1; tput cup 19 0; echo "El nombre del grupo no puede contener numeros o dos puntos..."
+						else
+							tput cup 19 0; echo "                                                                     "
+							tput cup 20 0; echo "                                                                      "
+							
+							grupoLetras=$(echo "${#grupo}")
+							gr2Letras=$(echo "${#gr2}")
+							u=$((54 + $grupoLetras))
+							v=$(($u + 9))
+							w=$(($v + $gr2Letras + 2))
+
+							tput setaf 3; tput cup 18 0; echo "Esta seguro que desea cambiar al usuario del grupo"; tput cup 18 51; tput setaf 5; echo "'$grupo'"
+							tput setaf 3; tput cup 18 $u; echo "al grupo"; tput setaf 5; tput cup 18 $v; echo "'$gr2'"; tput setaf 3; tput cup 18 $w; echo "?"
+							echo "Pulse M para modificar"
+							echo "Pulse S para salir sin aceptar"
+							tput cup 22 0; tput setaf 7; read opcion2
+
+							while [[ $opcion2 != "S" ]] && [[ $opcion2 != "M" ]] && [[ $opcion2 != "m" ]] && [[ $opcion2 != "s" ]]
+							do
+								tput cup 22 0; echo "                                     "
+								tput setaf 1; tput cup 25 0; echo "Opcion incorrecta!"
+								echo "Debe ingresar <M> o <S>."
+								tput cup 22 0; tput setaf 7; read opcion2
+							done
+
+							tput cup 25 0; echo "                                 "
+							tput cup 26 0; echo "                               "
+
+							if [[ $opcion2 == "m" ]]
+							then
+								opcion2="M"
+							fi
+
+							if [[ $opcion2 == "s" ]]
+							then
+								opcion2="S"
+							fi
+
+							case $opcion2 in
+
+								"M") 
+									gid2=$(cut -d: -f3 /etc/group | grep -w "$gr2")
+									sudo usermod -g $gr2 $nomUsu
+							
+									if [[ $grupo == "admin" ]]
+									then
+										mv /etc/sudoers /etc/sudoers2
+										grep -v "$nomUsu ALL" /etc/sudoers2 > /etc/sudoers
+										rm /etc/sudoers2
+									fi
+
+									if [[ $gr2 == "admin" ]]
+									then
+										echo "$nomUsu ALL=(ALL:ALL) ALL" >> /etc/sudoers
+									fi
+									
+									tput cup 24 0; tput setaf 2; echo "Grupo del usuario '$nomUsu' modificado correctamente!"
+									echo "Presione cualquier tecla para volver..."; tput setaf 7; read espera2; break 3
+									;;
+								
+								"S")
+									break 3
+									;;
+							esac
+
+						fi
+						
+					done	
 
 				fi
+
+				if [ $dato == "MAIL" ]
+				then
+					dato="mail"
+				fi
+
+				if [[ $dato == "mail" ]]
+				then
+					tput setaf 3; tput cup 16 0; echo "Nuevo mail:"
+
+					while [ true ]
+					do
+						tput cup 16 12; echo "                                                                 "
+						tput setaf 7; tput cup 16 12; read mail2
+						mail3=$(cut -d: -f2 /etc/mails | grep -w "$mail2")
+
+						if [ -z $mail2 ]
+						then
+							tput cup 19 0; echo "                                                                     "
+							tput cup 20 0; echo "                                                                      "
+							tput setaf 1; tput cup 19 0; echo "Ingrese un dato valido."
+						elif [[ $mail2 == $mail ]]
+						then
+							tput cup 19 0; echo "                                                                     "
+							tput cup 20 0; echo "                                                                      "
+							tput setaf 1; tput cup 19 0; echo "Ingrese un mail diferente al original..."
+						elif [[ $mail3 != "" ]]
+						then
+							tput cup 19 0; echo "                                                                     "
+							tput cup 20 0; echo "                                                                      "
+							tput setaf 1; tput cup 19 0; echo "Ese correo ya esta registrado en el sistema..."
+							tput cup 20 0; echo "Ingrese uno diferente."
+						else
+							tput cup 19 0; echo "                                                "
+							tput cup 20 0; echo "                                                "
+
+							mailLetras=$(echo "${#mail}")
+							mail2Letras=$(echo "${#mail2}")
+							u=$((44 + $mailLetras))
+							v=$(($u + 2))
+							w=$(($v + $mail2Letras + 2))
+
+							tput setaf 3; tput cup 18 0; echo "Esta seguro que desea cambiar el mail de"; tput cup 18 41; tput setaf 5; echo "'$mail'"
+							tput setaf 3; tput cup 18 $u; echo "a"; tput setaf 5; tput cup 18 $v; echo "'$mail2'"; tput setaf 3; tput cup 18 $w; echo "?"
+							echo "Pulse M para modificar"
+							echo "Pulse S para salir sin aceptar"
+							tput cup 22 0; tput setaf 7; read opcion2
+
+							while [[ $opcion2 != "S" ]] && [[ $opcion2 != "M" ]] && [[ $opcion2 != "m" ]] && [[ $opcion2 != "s" ]]
+							do
+								tput cup 22 0; echo "                                     "
+								tput setaf 1; tput cup 25 0; echo "Opcion incorrecta!"
+								echo "Debe ingresar <M> o <S>."
+								tput cup 22 0; tput setaf 7; read opcion2
+							done
+
+							tput cup 25 0; echo "                                 "
+							tput cup 26 0; echo "                               "
+
+							if [[ $opcion2 == "m" ]]
+							then
+								opcion2="M"
+							fi
+
+							if [[ $opcion2 == "s" ]]
+							then
+								opcion2="S"
+							fi
+
+							case $opcion2 in
+
+								"M") 
+
+									mv /etc/mails /etc/mails2
+									grep -v "$nomUsu" /etc/mails2 > /etc/mails
+									rm /etc/mails2
+
+									echo "$nomUsu:$mail2" >> /etc/mails
+												
+									tput cup 24 0; tput setaf 2; echo "Mail del usuario '$nomUsu' modificado correctamente!"
+									echo "Presione cualquier tecla para volver..."; tput setaf 7; read espera2; break 3
+									;;
+								
+								"S")
+									break 3
+									;;
+							esac
+
+						fi
+
+					done
+
+				fi
+
 			fi
 
 		done
@@ -190,181 +380,3 @@ do
 	fi
 
 done
-
-
-		
-
-		
-
-		
-
-		
-
-	
-
-	
-
-	if [[ $dato == "gr" ]]
-	then
-		tput setaf 3; tput cup 16 0; echo "Nombre del grupo al que lo desea mover: "
-		tput setaf 7; tput cup 16 40; read gr2
-
-		while [[ $gr2 == $grupo ]]
-		do
-			tput cup 19 0; echo "                                                          "
-			tput setaf 1; tput cup 19 0; echo "El usuario '$nomUsu' ya esta ingresado en ese grupo!"
-			tput cup 20 0; echo "Intente ingresando uno diferente."
-			tput setaf 7
-			tput cup 16 40; echo "                                                              "
-			tput cup 16 40; read gr2 
-
-		done
-
-		tput cup 19 0; echo "                                                            "
-		tput cup 20 0; echo "                                                               "
-
-		gr3=$(cut -d: -f1 /etc/group | grep -w "$gr2")
-
-		while [ -z $gr3 ]
-		do
-			tput cup 19 0; echo "                                                          "
-				tput setaf 1; tput cup 19 0; echo "No existe un grupo llamado '$gr2' en el sistema..."
-			tput cup 20 0; echo "Intente ingresando uno existente o regrese luego de crearlo."
-			tput setaf 7
-				tput cup 16 40; echo "                                                              "
-			tput cup 16 40; read gr2
-			gr3=$(cut -d: -f1 /etc/group | grep -w "$gr2")
-		done
-
-		tput cup 19 0; echo "                                                            "
-		tput cup 20 0; echo "                                                               "
-
-		grupoLetras=$(echo "${#grupo}")
-		gr2Letras=$(echo "${#gr2}")
-		u=$((54 + $grupoLetras))
-		v=$(($u + 9))
-		w=$(($v + $gr2Letras + 2))
-
-		tput setaf 3; tput cup 18 0; echo "Esta seguro que desea cambiar al usuario del grupo"; tput cup 18 51; tput setaf 5; echo "'$grupo'"
-		tput setaf 3; tput cup 18 $u; echo "al grupo"; tput setaf 5; tput cup 18 $v; echo "'$gr2'"; tput setaf 3; tput cup 18 $w; echo "?"
-		echo "Pulse A para aceptar"
-		echo "Pulse S para salir sin aceptar"
-		tput cup 22 0; tput setaf 7; read opcion2
-
-		if [[ $opcion2 == "a" ]]
-		then
-			opcion2="A"
-		fi
-
-		if [[ $opcion2 == "s" ]]
-		then
-			opcion2="S"
-		fi
-
-		case $opcion2 in
-
-			"A") 
-				gid2=$(cut -d: -f3 /etc/group | grep -w "$gr2")
-				sudo usermod -g $gr2 $nomUsu
-		
-				if [[ $grupo == "admin" ]]
-				then
-					mv /etc/sudoers /etc/sudoers2
-					grep -v "$nomUsu ALL" /etc/sudoers2 > /etc/sudoers
-					rm /etc/sudoers2
-				fi
-
-				if [[ $gr2 == "admin" ]]
-				then
-					echo "$nomUsu ALL=(ALL:ALL) ALL" >> /etc/sudoers
-				fi
-				
-				tput cup 24 0; tput setaf 2; echo "Grupo del usuario '$nomUsu' modificado correctamente!"
-				echo "Presione cualquier tecla para volver..."; tput setaf 7; read espera2
-				;;
-			
-			"S")
-
-				;;
-		esac
-
-	fi
-
-	if [ $dato == "MAIL" ]
-	then
-		dato="mail"
-	fi
-
-	if [[ $dato == "mail" ]]
-	then
-
-		tput setaf 3; tput cup 16 0; echo "Nuevo mail:"
-		tput setaf 7; tput cup 16 12; read mail2
-
-		while [[ $mail2 == $mail ]]
-		do
-			tput cup 16 12; echo "                                        "
-			tput setaf 1; tput cup 19 0; echo "Ingrese un mail diferente al original..."
-			tput cup 16 12; tput setaf 7; read mail2
-		done
-
-		tput cup 19 0; echo "                                                "
-
-		mail3=$(grep -w ":$mail2" /etc/mails)
-
-		while [ $mail3 ]
-		do
-			tput setaf 1; tput cup 19 0; echo "Ese correo ya esta registrado en el sistema..."
-			tput cup 20 0; echo "Ingrese uno diferente."
-			tput setaf 7; tput cup 16 12; echo "                                        "
-			tput cup 16 12; read mail2
-			mail3=$(grep -w ":$mail2" /etc/mails)
-		done
-
-		tput cup 19 0; echo "                                                "
-		tput cup 20 0; echo "                                                "
-
-		mailLetras=$(echo "${#mail}")
-		mail2Letras=$(echo "${#mail2}")
-		u=$((44 + $mailLetras))
-		v=$(($u + 2))
-		w=$(($v + $mail2Letras + 2))
-
-		tput setaf 3; tput cup 18 0; echo "Esta seguro que desea cambiar el mail de"; tput cup 18 41; tput setaf 5; echo "'$mail'"
-		tput setaf 3; tput cup 18 $u; echo "a"; tput setaf 5; tput cup 18 $v; echo "'$mail2'"; tput setaf 3; tput cup 18 $w; echo "?"
-		echo "Pulse A para aceptar"
-		echo "Pulse S para salir sin aceptar"
-		tput cup 22 0; tput setaf 7; read opcion2
-
-		if [[ $opcion2 == "a" ]]
-		then
-			opcion2="A"
-		fi
-
-		if [[ $opcion2 == "s" ]]
-		then
-			opcion2="S"
-		fi
-
-		case $opcion2 in
-
-			"A") 
-
-				mv /etc/mails /etc/mails2
-				grep -v "$nomUsu" /etc/mails2 > /etc/mails
-				rm /etc/mails2
-
-				echo "$nomUsu:$mail2" >> /etc/mails
-							
-				tput cup 24 0; tput setaf 2; echo "Mail del usuario '$nomUsu' modificado correctamente!"
-				echo "Presione cualquier tecla para volver..."; tput setaf 7; read espera2
-				;;
-			
-			"S")
-
-				;;
-		esac
-
-	fi
-
-fi
