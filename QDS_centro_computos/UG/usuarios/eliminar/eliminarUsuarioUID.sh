@@ -120,6 +120,8 @@ do
 				grep -v "$nomUsu" /etc/mails2 > /etc/mails
 				rm /etc/mails2
 
+				mysql -h "192.168.5.50" -u "amadeus.gonzalez" -p"55055884" "datavision" -e "DELETE FROM login WHERE nom_usu='$nomUsu'"
+
 				tput cup 23 0; tput setaf 2
 				echo "El usuario con UID '$uid' fue eliminado del sistema correctamente!"
 				echo "Toque cualquier tecla para volver..."; tput setaf 7; read espera; break ;;

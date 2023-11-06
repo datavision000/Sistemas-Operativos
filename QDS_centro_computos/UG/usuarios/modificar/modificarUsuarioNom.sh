@@ -153,6 +153,9 @@ do
 
 									echo "$nom2:$mail" >> /etc/mails
 
+									id_usuario=$(mysql -h "192.168.5.50" -u "amadeus.gonzalez" -p"55055884" "datavision" -e "SELECT id_usuario FROM login WHERE nom_usu='$nomUsu'" | tail -1)
+									mysql -h "192.168.5.50" -u "amadeus.gonzalez" -p"55055884" "datavision" -e "UPDATE login SET nom_usu='$nom2' WHERE id_usuario='$id_usuario'"
+
 									tput cup 24 0; tput setaf 2; echo "Nombre de usuario modificado correctamente!"
 									echo "Presione cualquier tecla para volver..."; tput setaf 7; read espera; break 3
 									;;
@@ -264,7 +267,10 @@ do
 									then
 										echo "$nomUsu ALL=(ALL:ALL) ALL" >> /etc/sudoers
 									fi
-									
+
+									id_usuario=$(mysql -h "192.168.5.50" -u "amadeus.gonzalez" -p"55055884" "datavision" -e "SELECT id_usuario FROM login WHERE nom_usu='$nomUsu'" | tail -1)
+									mysql -h "192.168.5.50" -u "amadeus.gonzalez" -p"55055884" "datavision" -e "UPDATE login SET tipo_usu='$gr2' WHERE id_usuario='$id_usuario'"
+
 									tput cup 24 0; tput setaf 2; echo "Grupo del usuario '$nomUsu' modificado correctamente!"
 									echo "Presione cualquier tecla para volver..."; tput setaf 7; read espera2; break 3
 									;;
@@ -357,6 +363,9 @@ do
 									rm /etc/mails2
 
 									echo "$nomUsu:$mail2" >> /etc/mails
+				
+									id_usuario=$(mysql -h "192.168.5.50" -u "amadeus.gonzalez" -p"55055884" "datavision" -e "SELECT id_usuario FROM login WHERE nom_usu='$nomUsu'" | tail -1)
+									mysql -h "192.168.5.50" -u "amadeus.gonzalez" -p"55055884" "datavision" -e "UPDATE login SET mail='$mail2' WHERE id_usuario='$id_usuario'"
 												
 									tput cup 24 0; tput setaf 2; echo "Mail del usuario '$nomUsu' modificado correctamente!"
 									echo "Presione cualquier tecla para volver..."; tput setaf 7; read espera2; break 3
