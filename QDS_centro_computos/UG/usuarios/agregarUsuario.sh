@@ -88,8 +88,9 @@ do
 						fi
 
 						useradd -g $grupo -c $comentario $usu
-						mysql -h "192.168.5.50" -u "amadeus.gonzalez" -p"55055884" "datavision" -e "INSERT INTO login (nom_usu, mail, tipo_usu, contrasenia) VALUES ('$usu', '$mail', '$grupo', '$usu')"
-						echo "$usu:$usu" | sudo chpasswd
+						contrasenia=$(tr -dc 'A-Z0-9' < /dev/urandom | head -c 8; echo)
+						mysql -h "192.168.5.50" -u "amadeus.gonzalez" -p"55055884" "datavision" -e "INSERT INTO login (nom_usu, mail, tipo_usu, contrasenia) VALUES ('$usu', '$mail', '$grupo', '$contrasenia')"
+						echo "$usu:$contrasenia" | chpasswd
 						echo "$usu:$mail" >> /etc/mails
 						tput cup 7 0; echo "                                                        "
 						tput setaf 2; tput cup 8 0
