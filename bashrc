@@ -109,4 +109,5 @@ then
 fi
 
 scripts
+docker restart web-server
 qds

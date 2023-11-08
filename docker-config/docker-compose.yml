@@ -17,12 +17,9 @@ services:
     container_name: db-server
     image: mysql:latest
     command: --default-authentication-plugin=mysql_native_password
-    environment:
-      MYSQL_DATABASE: QDS
-      MYSQL_ROOT_PASSWORD: qds000L
-      MYSQL_USER: adminQDS
-      MYSQL_PASSWORD: qds000L
+    volumes:
+    - /home/admin/QDS:/var/lib/mysql
     ports:
-    - 6033:3306
+    - 3306:3306
 
 
