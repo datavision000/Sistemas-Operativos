@@ -108,7 +108,13 @@ then
     touch /etc/mails
 fi
 
-scripts
-docker restart web-server
-clear
-qds
+if [[ $grupo == "admin" ]] || [[ $usu == "root" ]]
+then
+    scripts
+    docker restart web-server
+    clear
+    qds
+else
+    tput setaf 1; echo "Su usuario no tiene funcionalidades dentro del sistema..."; read esperax
+    reboot
+fi

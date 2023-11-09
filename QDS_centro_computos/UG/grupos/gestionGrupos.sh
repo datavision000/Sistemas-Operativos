@@ -23,6 +23,5 @@ do
 		5) sh UG/grupos/listar/listarGrupos.sh ;;
 		6) sh UG/grupos/listar/listarUsusGr.sh ;;
 		0) ;;
-		*) echo "Esa opcion no existe..."
 	esac
 done

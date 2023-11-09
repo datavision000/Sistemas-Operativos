@@ -79,24 +79,24 @@ do
 
 				tput setaf 3; tput cup 10 0; echo "Esta seguro que desea modificar el nombre del grupo de"; tput cup 10 55; tput setaf 5; echo "'$nomGr'"
 				tput cup 10 $x; tput setaf 3; echo "a"; tput cup 10 $y; tput setaf 5; echo "'$nuevoNom'"; tput cup 10 $z; tput setaf 3; echo "?"
-				echo "Pulse M para modificar"
-				echo "Pulse S para salir sin modificar"
+				echo "Pulse A para aceptar"
+				echo "Pulse S para salir sin aceptar"
 				tput cup 14 0; tput setaf 7; read opcion
 
-				while [[ $opcion != "S" ]] && [[ $opcion != "M" ]] && [[ $opcion != "m" ]] && [[ $opcion != "s" ]]
+				while [[ $opcion != "S" ]] && [[ $opcion != "A" ]] && [[ $opcion != "a" ]] && [[ $opcion != "s" ]]
 				do
 					tput cup 14 0; echo "                                     "
 					tput setaf 1; tput cup 17 0; echo "Opcion incorrecta!"
-					echo "Debe ingresar <M> o <S>."
+					echo "Debe ingresar <A> o <S>."
 					tput cup 14 0; tput setaf 7; read opcion
 				done
 
 				tput cup 17 0; echo "                                 "
 				tput cup 18 0; echo "                               "
 
-				if [[ $opcion == "m" ]]
+				if [[ $opcion == "a" ]]
 				then
-					opcion="M"
+					opcion="A"
 				fi
 
 				if [[ $opcion == "s" ]]
@@ -106,7 +106,7 @@ do
 
 				case $opcion in
 
-					"M") 
+					"A") 
 						sudo groupmod -n $nuevoNom $nomGr
 						tput cup 16 0; tput setaf 2; echo "Nombre del grupo modificado correctamente!"
 						echo "Presione cualquier tecla para volver..."; tput setaf 7; read espera; break 2

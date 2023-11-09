@@ -93,9 +93,22 @@ do
 						echo "$usu:$contrasenia" | chpasswd
 						echo "$usu:$mail" >> /etc/mails
 						tput cup 7 0; echo "                                                        "
-						tput setaf 2; tput cup 8 0
-						echo "El usuario '$usu' (grupo: '$grupo') fue ingresado correctamente al sistema!"
-						tput cup 9 0; echo "Presione cualquier tecla para volver..."; tput setaf 7; read espera; break 3
+						if [[ $grupo == "admin" ]]
+						then
+							tput setaf 1
+							tput cup 8 0; echo "*************************************************************************************************"
+							echo "IMPORTANTE! Asegurese de brindar el siguiente codigo al usuario creado: $contrasenia"
+							echo "Este, debera usar el codigo para loguearse por primera vez y luego poder modificar su contrasena."
+							echo "*************************************************************************************************"
+							tput setaf 2; tput cup 13 0
+							echo "El usuario '$usu' (grupo: '$grupo') fue ingresado correctamente al sistema!"
+							echo "Presione cualquier tecla para volver..."; tput setaf 7; read espera; break 3
+						else
+							tput setaf 2; tput cup 8 0
+							echo "El usuario '$usu' (grupo: '$grupo') fue ingresado correctamente al sistema!"
+							echo "Presione cualquier tecla para volver..."; tput setaf 7; read espera; break 3
+						fi
+						
 					fi
 
 				done
@@ -104,5 +117,6 @@ do
 
 		done
 
-	fi	
+	fi
+
 done

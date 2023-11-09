@@ -55,24 +55,24 @@ do
 
 		tput setaf 3; tput cup 8 0
 		echo "Esta seguro que desea eliminar este grupo?"
-		echo "Pulse E para eliminar"
-		echo "Pulse S para salir sin eliminar"
+		echo "Pulse A para aceptar"
+		echo "Pulse S para salir sin aceptar"
 		tput setaf 7; tput cup 12 0; read opcion
 
-		while [[ $opcion != "E" ]] && [[ $opcion != "S" ]] && [[ $opcion != "s" ]] && [[ $opcion != "e" ]]
+		while [[ $opcion != "A" ]] && [[ $opcion != "S" ]] && [[ $opcion != "s" ]] && [[ $opcion != "a" ]]
 		do
 			tput cup 12 0; echo "                                     "
 			tput setaf 1; tput cup 15 0; echo "Opcion incorrecta!"
-			echo "Debe ingresar <E> o <S>."
+			echo "Debe ingresar <A> o <S>."
 			tput cup 12 0; tput setaf 7; read opcion
 		done
 
 		tput cup 15 0; echo "                                 "
 		tput cup 16 0; echo "                             "
 
-		if [[ $opcion == "e" ]]
+		if [[ $opcion == "a" ]]
 		then
-			opcion="E"
+			opcion="A"
 		fi
 
 		if [[ $opcion == "s" ]]
@@ -82,7 +82,7 @@ do
 
 		case $opcion in
 
-			"E") 
+			"A") 
 				sudo groupdel $nomGr
 				tput cup 14 0; tput setaf 2
 				echo "El grupo con GID '$gid' fue eliminado del sistema correctamente!"

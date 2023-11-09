@@ -117,24 +117,24 @@ do
 
 							tput setaf 3; tput cup 18 0; echo "Esta seguro que desea modificar este usuario de"; tput cup 18 48; tput setaf 5; echo "'$nomUsu'"
 							tput cup 18 $x; tput setaf 3; echo " a"; tput cup 18 $y; tput setaf 5; echo "'$nom2'"; tput cup 18 $z; tput setaf 3; echo "?"
-							echo "Pulse M para modificar"
-							echo "Pulse S para salir sin modificar"
+							echo "Pulse A para aceptar"
+							echo "Pulse S para salir sin aceptar"
 							tput cup 22 0; tput setaf 7; read opcion
 
-							while [[ $opcion != "S" ]] && [[ $opcion != "M" ]] && [[ $opcion != "m" ]] && [[ $opcion != "s" ]]
+							while [[ $opcion != "S" ]] && [[ $opcion != "A" ]] && [[ $opcion != "a" ]] && [[ $opcion != "s" ]]
 							do
 								tput cup 22 0; echo "                                     "
 								tput setaf 1; tput cup 25 0; echo "Opcion incorrecta!"
-								echo "Debe ingresar <M> o <S>."
+								echo "Debe ingresar <A> o <S>."
 								tput cup 22 0; tput setaf 7; read opcion
 							done
 
 							tput cup 25 0; echo "                                 "
 							tput cup 26 0; echo "                               "
 
-							if [[ $opcion == "m" ]]
+							if [[ $opcion == "a" ]]
 							then
-								opcion="M"
+								opcion="A"
 							fi
 
 							if [[ $opcion == "s" ]]
@@ -144,7 +144,7 @@ do
 
 							case $opcion in
 
-								"M") 
+								"A") 
 									sudo usermod -l $nom2 $nomUsu
 												
 									mv /etc/mails /etc/mails2
@@ -225,24 +225,24 @@ do
 
 							tput setaf 3; tput cup 18 0; echo "Esta seguro que desea cambiar al usuario del grupo"; tput cup 18 51; tput setaf 5; echo "'$grupo'"
 							tput setaf 3; tput cup 18 $u; echo "al grupo"; tput setaf 5; tput cup 18 $v; echo "'$gr2'"; tput setaf 3; tput cup 18 $w; echo "?"
-							echo "Pulse M para modificar"
+							echo "Pulse A para aceptar"
 							echo "Pulse S para salir sin aceptar"
 							tput cup 22 0; tput setaf 7; read opcion2
 
-							while [[ $opcion2 != "S" ]] && [[ $opcion2 != "M" ]] && [[ $opcion2 != "m" ]] && [[ $opcion2 != "s" ]]
+							while [[ $opcion2 != "S" ]] && [[ $opcion2 != "A" ]] && [[ $opcion2 != "a" ]] && [[ $opcion2 != "s" ]]
 							do
 								tput cup 22 0; echo "                                     "
 								tput setaf 1; tput cup 25 0; echo "Opcion incorrecta!"
-								echo "Debe ingresar <M> o <S>."
+								echo "Debe ingresar <A> o <S>."
 								tput cup 22 0; tput setaf 7; read opcion2
 							done
 
 							tput cup 25 0; echo "                                 "
 							tput cup 26 0; echo "                               "
 
-							if [[ $opcion2 == "m" ]]
+							if [[ $opcion2 == "a" ]]
 							then
-								opcion2="M"
+								opcion2="A"
 							fi
 
 							if [[ $opcion2 == "s" ]]
@@ -252,7 +252,7 @@ do
 
 							case $opcion2 in
 
-								"M") 
+								"A") 
 									gid2=$(cut -d: -f3 /etc/group | grep -w "$gr2")
 									sudo usermod -g $gr2 $nomUsu
 							
@@ -329,24 +329,24 @@ do
 
 							tput setaf 3; tput cup 18 0; echo "Esta seguro que desea cambiar el mail de"; tput cup 18 41; tput setaf 5; echo "'$mail'"
 							tput setaf 3; tput cup 18 $u; echo "a"; tput setaf 5; tput cup 18 $v; echo "'$mail2'"; tput setaf 3; tput cup 18 $w; echo "?"
-							echo "Pulse M para modificar"
+							echo "Pulse A para aceptar"
 							echo "Pulse S para salir sin aceptar"
 							tput cup 22 0; tput setaf 7; read opcion2
 
-							while [[ $opcion2 != "S" ]] && [[ $opcion2 != "M" ]] && [[ $opcion2 != "m" ]] && [[ $opcion2 != "s" ]]
+							while [[ $opcion2 != "S" ]] && [[ $opcion2 != "A" ]] && [[ $opcion2 != "a" ]] && [[ $opcion2 != "s" ]]
 							do
 								tput cup 22 0; echo "                                     "
 								tput setaf 1; tput cup 25 0; echo "Opcion incorrecta!"
-								echo "Debe ingresar <M> o <S>."
+								echo "Debe ingresar <A> o <S>."
 								tput cup 22 0; tput setaf 7; read opcion2
 							done
 
 							tput cup 25 0; echo "                                 "
 							tput cup 26 0; echo "                               "
 
-							if [[ $opcion2 == "m" ]]
+							if [[ $opcion2 == "a" ]]
 							then
-								opcion2="M"
+								opcion2="A"
 							fi
 
 							if [[ $opcion2 == "s" ]]
@@ -356,7 +356,7 @@ do
 
 							case $opcion2 in
 
-								"M") 
+								"A") 
 
 									mv /etc/mails /etc/mails2
 									grep -v "$nomUsu" /etc/mails2 > /etc/mails

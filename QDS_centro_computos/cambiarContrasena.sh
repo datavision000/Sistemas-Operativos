@@ -73,7 +73,8 @@ do
 			
 				echo "$contrasenaNueva1" | passwd --stdin $(whoami)
 				tput cup 14 0; tput setaf 2; echo "Tu contrasena fue modificada correctamente!"
-				echo "Presione cualquier tecla para volver..."; read espera; break ;;		
+				echo "Presione cualquier tecla para volver..."; read espera; break ;;
+				
 			"S")
 				break
 				;;

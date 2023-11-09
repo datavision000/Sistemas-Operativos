@@ -37,24 +37,24 @@ then
 			tput cup $(($y + 1)) 0; echo "*  ATENCION!   Esta accion es irreversible una vez ejecutada.  *"
 			tput cup $(($y + 2)) 0; echo "****************************************************************"
 			tput cup $(($y + 4)) 0; tput setaf 3; echo "Esta seguro de reestablecer la config. del sistema, usuarios y grupos desde la copia indicada?"
-			echo "Pulse R para reestablecer"
-			echo "Pulse S para salir sin reestablecer"
+			echo "Pulse A para aceptar"
+			echo "Pulse S para salir sin aceptar"
 			tput cup $(($y + 9)) 0; tput setaf 7; read opcion
 
-			while [[ $opcion != "R" ]] && [[ $opcion != "r" ]] && [[ $opcion != "S" ]] && [[ $opcion != "s" ]]
+			while [[ $opcion != "A" ]] && [[ $opcion != "a" ]] && [[ $opcion != "S" ]] && [[ $opcion != "s" ]]
 			do
 				tput cup $(($y + 9)) 0; echo "                                     "
 				tput setaf 1; tput cup $(($y + 12)) 0; echo "Opcion incorrecta!"
-				echo "Debe ingresar <R> o <S>."
+				echo "Debe ingresar <A> o <S>."
 				tput cup $(($y + 9)) 0; tput setaf 7; read opcion
 			done
 
 			tput cup $(($y + 12)) 0; echo "                                 "
 			tput cup $(($y + 13)) 0; echo "                               "
 
-			if [[ $opcion == "r" ]]
+			if [[ $opcion == "a" ]]
 			then
-				opcion="R"
+				opcion="A"
 			fi
 
 			if [[ $opcion == "s" ]]
@@ -64,7 +64,7 @@ then
 
 			case $opcion in
 
-				"R")
+				"A")
 					# hacer reestablecimiento
 					tput cup $(($y + 12)) 0; tput setaf 2; echo "Configuraciones, usuarios y grupos reestablecidos correctamente!"
 					tput cup $(($y + 13)) 0; tput setaf 2; echo "Para guardar los cambios, el sistema debera reiniciarse."
