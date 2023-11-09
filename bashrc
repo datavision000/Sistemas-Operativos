@@ -110,4 +110,5 @@ fi
 
 scripts
 docker restart web-server
+clear
 qds

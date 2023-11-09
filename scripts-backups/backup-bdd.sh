@@ -19,4 +19,4 @@ then
 
 fi
 
-mysqldump -u root -p'DVeul000' QDS > /home/admin/backups/copias-bdd/qds$fechaHora.sql
+mysqldump -h '192.168.5.50' -u amadeus.gonzalez -p'55055884' datavision > /home/admin/backups/copias-bdd/qds$fechaHora.sql

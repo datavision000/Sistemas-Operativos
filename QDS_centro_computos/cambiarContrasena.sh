@@ -30,7 +30,7 @@ do
 		tput cup 7 0; echo "                                                                                "
 		tput cup 8 0; echo "                                                                                            "
 		tput setaf 1; tput cup 7 0; echo "Ingrese datos validos."
-	elif ! [[ $contrasenaNueva1 =~ $formato ]]
+	elif [[ $contrasenaNueva2 =~ $formato ]]
 	then
 		tput cup 7 0; echo "                                                                                "
 		tput cup 8 0; echo "                                                                      "
