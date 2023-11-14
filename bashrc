@@ -101,7 +101,10 @@ fi
 
 alias QDS="cd /home/admin/QDS_centro_computos; sh principal.sh"
 alias qds="cd /home/admin/QDS_centro_computos; sh principal.sh"
-alias scripts="clear; tput setaf 1; echo 'Aguarde unos segundos...'; find /home/admin -type f -exec dos2unix {} \; > /dev/null 2>&1; clear; tput setaf 7"
+alias scripts="clear; tput setaf 1; echo ' '; echo 'Aguarde unos segundos...'; find /home/admin -type f -exec dos2unix {} \; > /dev/null 2>&1; clear; tput setaf 7"
+alias docker="docker restart web-server"
+alias IP="sh /home/admin/inicio.sh"
+alias ip="sh /home/admin/inicio.sh"
 
 if [ ! -f /etc/mails ]
 then
@@ -111,10 +114,10 @@ fi
 if [[ $grupo == "admin" ]] || [[ $usu == "root" ]]
 then
     scripts
-    docker restart web-server
+    docker
     clear
     qds
 else
-    tput setaf 1; echo "Su usuario no tiene funcionalidades dentro del sistema..."; read esperax
+    tput setaf 1; tput cup 1 0; echo "Su usuario no tiene funcionalidades dentro del sistema..."; tput setaf 7; read esperax
     reboot
 fi
