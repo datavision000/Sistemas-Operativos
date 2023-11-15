@@ -5,11 +5,6 @@ fechaActual=$(date +%d/%m/%Y)
 horaActual=$(date +%H.%M)
 comentario=$(echo "$fechaActual-$horaActual")
 
-con=$(grep -w "conexion" /home/admin/config/configBDD | cut -d: -f2)
-usuCon=$(grep -w "usuCon" /home/admin/config/configBDD | cut -d: -f2)
-bddCon=$(grep -w "bddCon" /home/admin/config/configBDD | cut -d: -f2)
-passwdCon=$(grep -w "passwdCon" /home/admin/config/configBDD | cut -d: -f2)
-
 echo ""
 tput setaf 5; echo "Ingresar un Usuario"
 
@@ -94,20 +89,27 @@ do
 
 						useradd -g $grupo -c $comentario $usu
 						contrasenia=$(tr -dc 'A-Z0-9' < /dev/urandom | head -c 8; echo)
-						contraseniaHasheada=$(echo -n "$contrasenia" | sha256sum)
-						contraseniaHasheada2="${contraseniaHasheada:0:64}"
-						mysql -h "$con" -u "$usuCon" -p"$passwdCon" "$bddCon" -e "INSERT INTO login (nom_usu, mail, tipo_usu, contrasenia) VALUES ('$usu', '$mail', '$grupo', '$contraseniaHasheada2')"
 						echo "$usu:$contrasenia" | chpasswd
 						echo "$usu:$mail" >> /etc/mails
 						tput cup 7 0; echo "                                                        "
 						tput setaf 1
-						tput cup 8 0; echo "*************************************************************************************************"
-						echo "IMPORTANTE! Asegurese de brindar el siguiente codigo al usuario creado: $contrasenia"
-						echo "Este, debera usar el codigo para loguearse por primera vez y luego poder modificar su contrasena."
-						echo "*************************************************************************************************"
-						tput setaf 2; tput cup 13 0
-						echo "El usuario '$usu' (grupo: '$grupo') fue ingresado correctamente al sistema!"
-						echo "Presione cualquier tecla para volver..."; tput setaf 7; read espera; break 3
+					
+						if [[ $grupo == "admin" ]]
+						then
+							tput cup 8 0; echo "*************************************************************************************************"
+							echo "IMPORTANTE! Asegurese de brindar el siguiente codigo al usuario creado: $contrasenia"
+							echo "Este, debera usar el codigo para loguearse por primera vez y luego poder modificar su contrasena."
+							echo "*************************************************************************************************"
+
+							tput setaf 2; tput cup 13 0
+							echo "El usuario '$usu' (grupo: '$grupo') fue ingresado correctamente al sistema!"
+							echo "Presione cualquier tecla para volver..."; tput setaf 7; read espera; break 3
+						else
+							tput setaf 2; tput cup 8 0
+							echo "El usuario '$usu' (grupo: '$grupo') fue ingresado correctamente al sistema!"
+							echo "Presione cualquier tecla para volver..."; tput setaf 7; read espera; break 3
+
+						fi
 						
 					fi
 

@@ -1,6 +1,11 @@
 #!/bin/bash
 fechaHora=$(date +%d-%m-%Y,%H:%M)
 
+con=$(grep -w "conexion" /home/admin/config/configBDD | cut -d: -f2)
+usuCon=$(grep -w "usuCon" /home/admin/config/configBDD | cut -d: -f2)
+bddCon=$(grep -w "bddCon" /home/admin/config/configBDD | cut -d: -f2)
+passwdCon=$(grep -w "passwdCon" /home/admin/config/configBDD | cut -d: -f2)
+
 if [ "$(ls -A /home/admin/backups/copias-bdd)" ]
 then
 
@@ -19,4 +24,4 @@ then
 
 fi
 
-mysqldump -h '192.168.5.50' -u amadeus.gonzalez -p'55055884' datavision > /home/admin/backups/copias-bdd/qds$fechaHora.sql
+mysqldump -h '$con' -u $usuCon -p'$passwdCon' datavision > /home/admin/backups/copias-bdd/qds$fechaHora.sql
