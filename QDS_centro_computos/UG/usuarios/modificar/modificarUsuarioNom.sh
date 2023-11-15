@@ -1,6 +1,11 @@
 #!/bin/bash
 clear
 
+con=$(grep -w "conexion" /home/admin/config/configBDD | cut -d: -f2)
+usuCon=$(grep -w "usuCon" /home/admin/config/configBDD | cut -d: -f2)
+bddCon=$(grep -w "bddCon" /home/admin/config/configBDD | cut -d: -f2)
+passwdCon=$(grep -w "passwdCon" /home/admin/config/configBDD | cut -d: -f2)
+
 tput setaf 5; tput cup 1 0; echo "Modificar un Usuario (por nombre)"
 
 tput setaf 3; tput cup 3 0; echo "Ingrese el nombre del usuario a modificar: "
@@ -153,8 +158,8 @@ do
 
 									echo "$nom2:$mail" >> /etc/mails
 
-									id_usuario=$(mysql -h "192.168.5.50" -u "amadeus.gonzalez" -p"55055884" "datavision" -e "SELECT id_usuario FROM login WHERE nom_usu='$nomUsu'" | tail -1)
-									mysql -h "192.168.5.50" -u "amadeus.gonzalez" -p"55055884" "datavision" -e "UPDATE login SET nom_usu='$nom2' WHERE id_usuario='$id_usuario'"
+									id_usuario=$(mysql -h "$con" -u "$usuCon" -p"$passwdCon" "$bddCon" -e "SELECT id_usuario FROM login WHERE nom_usu='$nomUsu'" | tail -1)
+									mysql -h "$con" -u "$usuCon" -p"$passwdCon" "$bddCon" -e "UPDATE login SET nom_usu='$nom2' WHERE id_usuario='$id_usuario'"
 
 									tput cup 24 0; tput setaf 2; echo "Nombre de usuario modificado correctamente!"
 									echo "Presione cualquier tecla para volver..."; tput setaf 7; read espera; break 3
@@ -268,8 +273,8 @@ do
 										echo "$nomUsu ALL=(ALL:ALL) ALL" >> /etc/sudoers
 									fi
 
-									id_usuario=$(mysql -h "192.168.5.50" -u "amadeus.gonzalez" -p"55055884" "datavision" -e "SELECT id_usuario FROM login WHERE nom_usu='$nomUsu'" | tail -1)
-									mysql -h "192.168.5.50" -u "amadeus.gonzalez" -p"55055884" "datavision" -e "UPDATE login SET tipo_usu='$gr2' WHERE id_usuario='$id_usuario'"
+									id_usuario=$(mysql -h "$con" -u "$usuCon" -p"$passwdCon" "$bddCon" -e "SELECT id_usuario FROM login WHERE nom_usu='$nomUsu'" | tail -1)
+									mysql -h "$con" -u "$usuCon" -p"$passwdCon" "$bddCon" -e "UPDATE login SET tipo_usu='$gr2' WHERE id_usuario='$id_usuario'"
 
 									tput cup 24 0; tput setaf 2; echo "Grupo del usuario '$nomUsu' modificado correctamente!"
 									echo "Presione cualquier tecla para volver..."; tput setaf 7; read espera2; break 3
@@ -364,8 +369,8 @@ do
 
 									echo "$nomUsu:$mail2" >> /etc/mails
 				
-									id_usuario=$(mysql -h "192.168.5.50" -u "amadeus.gonzalez" -p"55055884" "datavision" -e "SELECT id_usuario FROM login WHERE nom_usu='$nomUsu'" | tail -1)
-									mysql -h "192.168.5.50" -u "amadeus.gonzalez" -p"55055884" "datavision" -e "UPDATE login SET mail='$mail2' WHERE id_usuario='$id_usuario'"
+									id_usuario=$(mysql -h "$con" -u "$usuCon" -p"$passwdCon" "$bddCon" -e "SELECT id_usuario FROM login WHERE nom_usu='$nomUsu'" | tail -1)
+									mysql -h "$con" -u "$usuCon" -p"$passwdCon" "$bddCon" -e "UPDATE login SET mail='$mail2' WHERE id_usuario='$id_usuario'"
 												
 									tput cup 24 0; tput setaf 2; echo "Mail del usuario '$nomUsu' modificado correctamente!"
 									echo "Presione cualquier tecla para volver..."; tput setaf 7; read espera2; break 3

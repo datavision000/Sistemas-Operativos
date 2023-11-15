@@ -1,6 +1,11 @@
 #!/bin/bash
 clear
 
+con=$(grep -w "conexion" /home/admin/config/configBDD | cut -d: -f2)
+usuCon=$(grep -w "usuCon" /home/admin/config/configBDD | cut -d: -f2)
+bddCon=$(grep -w "bddCon" /home/admin/config/configBDD | cut -d: -f2)
+passwdCon=$(grep -w "passwdCon" /home/admin/config/configBDD | cut -d: -f2)
+
 tput setaf 5; tput cup 1 0; echo "Eliminar un Usuario (por nombre)"
 
 tput setaf 3; tput cup 3 0; echo "Ingrese el nombre del usuario a eliminar: "
@@ -123,7 +128,7 @@ do
 				grep -v "$nomUsu" /etc/mails2 > /etc/mails
 				rm /etc/mails2
 
-				mysql -h "192.168.5.50" -u "amadeus.gonzalez" -p"55055884" "datavision" -e "DELETE FROM login WHERE nom_usu='$nomUsu'"
+				mysql -h "$con" -u "$usuCon" -p"$passwdCon" "$bddCon" -e "DELETE FROM login WHERE nom_usu='$nomUsu'"
 
 				tput cup 23 0; tput setaf 2
 				echo "El usuario llamado '$nomUsu' fue eliminado del sistema correctamente!"

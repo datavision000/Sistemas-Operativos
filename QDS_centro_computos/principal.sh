@@ -15,7 +15,9 @@ do
 	echo "3. Backup - Base de Datos"
 	echo "4. Backup - Config. del Sistema"
 	echo "5. Gestionar Logins"
-	echo "6. Cambiar Mi Contrasena"
+	echo "6. Mostrar Conexion a QDS"
+	echo "7. Configurar Conexion a Base de Datos"
+	echo "8. Cambiar mi Contrasena"
 	tput setaf 1; echo "0. Salir"
 	tput setaf 7; echo " "
 	read opcion
@@ -25,7 +27,9 @@ do
 		3) sh backups/bdd/menuBackupBDD.sh ;;
 		4) sh backups/sistema/menuBackupSys.sh ;;
 		5) sh logins/menuLogins.sh ;;
-		6) sh cambiarContrasena.sh ;;
+		6) sh mostrarIP.sh ;;
+		7) sh configurarBDD.sh ;;
+		8) sh cambiarContrasena.sh ;;
 		0) sh exitQDS.sh ;; 
 	esac
 done

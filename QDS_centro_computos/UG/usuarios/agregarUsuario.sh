@@ -5,6 +5,11 @@ fechaActual=$(date +%d/%m/%Y)
 horaActual=$(date +%H.%M)
 comentario=$(echo "$fechaActual-$horaActual")
 
+con=$(grep -w "conexion" /home/admin/config/configBDD | cut -d: -f2)
+usuCon=$(grep -w "usuCon" /home/admin/config/configBDD | cut -d: -f2)
+bddCon=$(grep -w "bddCon" /home/admin/config/configBDD | cut -d: -f2)
+passwdCon=$(grep -w "passwdCon" /home/admin/config/configBDD | cut -d: -f2)
+
 echo ""
 tput setaf 5; echo "Ingresar un Usuario"
 
@@ -91,7 +96,7 @@ do
 						contrasenia=$(tr -dc 'A-Z0-9' < /dev/urandom | head -c 8; echo)
 						contraseniaHasheada=$(echo -n "$contrasenia" | sha256sum)
 						contraseniaHasheada2="${contraseniaHasheada:0:64}"
-						mysql -h "192.168.5.50" -u "amadeus.gonzalez" -p"55055884" "datavision" -e "INSERT INTO login (nom_usu, mail, tipo_usu, contrasenia) VALUES ('$usu', '$mail', '$grupo', '$contraseniaHasheada2')"
+						mysql -h "$con" -u "$usuCon" -p"$passwdCon" "$bddCon" -e "INSERT INTO login (nom_usu, mail, tipo_usu, contrasenia) VALUES ('$usu', '$mail', '$grupo', '$contraseniaHasheada2')"
 						echo "$usu:$contrasenia" | chpasswd
 						echo "$usu:$mail" >> /etc/mails
 						tput cup 7 0; echo "                                                        "

@@ -21,14 +21,14 @@ do
 	then
 		tput cup 6 0; echo "                                                                      "
 		tput setaf 1; tput cup 6 0; echo "Ingrese un dato valido."
-	elif [[ $gid == 1001 ]]
+	elif [[ $gid == 1000 ]]
 	then
 		tput setaf 1; tput cup 6 0; echo "                                                                       "
 		tput cup 7 0; echo "                                            "
 		tput cup 8 0; echo "                                   "
 		tput cup 6 0; echo "Este grupo no puede ser eliminado del sistema!"
 		echo "(Grupo administrador)"
-	elif [[ ! -z $verificacionGr ]] && [[ $gid != 1001 ]]
+	elif [[ ! -z $verificacionGr ]] && [[ $gid != 1000 ]]
 	then
 		tput cup 6 0; tput setaf 1; echo "                                                                 "
 		tput cup 7 0; tput setaf 1; echo "                                                                 "
